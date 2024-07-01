@@ -51,7 +51,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.skillstorm</groupId>
-			<artifactId>Spring-Demo</artifactId>
+			<artifactId>Personnel-Management-App</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

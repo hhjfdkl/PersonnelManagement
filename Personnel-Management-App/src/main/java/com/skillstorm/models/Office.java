@@ -69,7 +69,8 @@ public class Office {
 		super();
 	}
 	
-	public Office(int officeId, String officeName, String address, String suite, String city, String state, String country, int maxCapacity)
+	public Office(int officeId, String officeName, String address, String suite, String city, 
+			String state, String country, int maxCapacity, List<Employee> employees, List<Department> departments)
 	{
 		super();
 		this.officeId = officeId;
@@ -80,6 +81,8 @@ public class Office {
 		this.state = state;
 		this.country = country;
 		this.maxCapacity = maxCapacity;
+		this.employees = employees;
+		this.departments = departments;
 	}
 	
 	
