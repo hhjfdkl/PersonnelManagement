@@ -33,6 +33,25 @@ public class JobService {
 							.body(job);
 				}
 				
+				//checks names
+				List<String> names = repo.getJobNames();	//we get a list of Strings from DB
+				boolean match = false;			//this will trip if a name matches
+				for(String name : names)		//iterate and compare case insensitive to match the DB unique name constraint
+					if(name.toLowerCase().equals(job.getJobName().toLowerCase()))
+					{
+						match = true;
+						break;
+					}
+						
+				
+				if(match)
+				{
+					return ResponseEntity
+							.status(400)
+							.header("Error", "A job with this name already exists")
+							.body(job);
+				}
+				
 				return ResponseEntity
 						.status(201)
 						.header("Message", "Job created")

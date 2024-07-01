@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -55,25 +56,26 @@ public class EmployeeController {
 		
 		
 		//UPDATE
-		@PutMapping
+		@PutMapping("/{id}")
 		public ResponseEntity<Employee> updateEmployee(
-				@RequestParam int id,
-				@RequestParam String firstName, 
-				@RequestParam String lastName, 
-				@RequestParam BigDecimal hourlyPay, 
-				@RequestParam LocalDate hireDate, 
-				@RequestParam Department department, 
-				@RequestParam Office office, 
-				@RequestParam Job job
+				@PathVariable int id,
+				@RequestBody Employee employee
 		)
 		{
-			return service.updateEmployee(id, firstName, lastName, hourlyPay, hireDate, department, office, job);
+			return service.updateEmployee(
+					id, employee.getFirstName(), 
+					employee.getLastName(), 
+					employee.getHourlyPay(), 
+					employee.getHireDate(), 
+					employee.getDepartment(), 
+					employee.getOffice(), 
+					employee.getJob());
 		}
-		
+
 		
 		//DELETE
 		@DeleteMapping("/{id}")
-		public void deleteEmployee(@RequestBody int id)
+		public void deleteEmployee(@PathVariable int id)
 		{
 			service.deleteEmployeeById(id);
 		}

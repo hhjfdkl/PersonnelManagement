@@ -30,6 +30,21 @@ public class DepartmentService {
 					.body(department);
 		}
 		
+		//checks names
+				List<String> names = repo.getDepartmentNames();	//we get a list of Strings from DB
+				boolean match = false;			//this will trip if a name matches
+				for(String name : names)		//iterate and compare case insensitive to match the DB unique name constraint
+					if(name.toLowerCase().equals(department.getDepartmentName().toLowerCase()))
+						match = true;
+				
+				if(match)
+				{
+					return ResponseEntity
+							.status(400)
+							.header("Error", "A department with this name already exists")
+							.body(department);
+				}
+		
 		return ResponseEntity
 				.status(201)
 				.header("Message", "Department created")

@@ -35,7 +35,7 @@ public class JobController {
 		{
 			return service.createJob(job);
 		}
-		
+	
 		
 		//READ
 		@GetMapping
@@ -52,21 +52,21 @@ public class JobController {
 		
 		
 		//UPDATE
-		@PutMapping
+		@PutMapping("/{id}")
 		public ResponseEntity<Job> updateJob(
-				@RequestParam int id,
-				@RequestParam String name, 
-				@RequestParam String description,  
-				@RequestParam List<Employee> employees				
+				@PathVariable int id,
+				@RequestBody Job job				
 		)
 		{
-			return service.updateJob(id, name, description, employees);
+			return service.updateJob(id, job.getJobName(), job.getJobDescription(), job.getEmployees());
 		}
 		
 		
+		//doesnt work now due to FK dependencies
 		//DELETE
+		
 		@DeleteMapping("/{id}")
-		public void deleteJob(@RequestBody int id)
+		public void deleteJob(@PathVariable int id)
 		{
 			service.deleteJobById(id);
 		}

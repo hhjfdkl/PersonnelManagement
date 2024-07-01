@@ -10,7 +10,8 @@ CREATE TABLE departments (
     
     , CONSTRAINT PRIMARY KEY (department_id)
     
-    , CONSTRAINT UNIQUE (department_id, department_name)
+--  , CONSTRAINT UNIQUE (department_id)  
+    , CONSTRAINT UNIQUE UQ_department_name (department_name)
 );
 
 CREATE TABLE offices (
@@ -20,13 +21,14 @@ CREATE TABLE offices (
     , office_address_suite VARCHAR(32)
     , office_location_city VARCHAR(256) NOT NULL
     , office_location_province VARCHAR(256) NOT NULL
+    , office_zip_code INT
     , office_location_country VARCHAR(256)
     , max_capacity INT NOT NULL
     
     , CONSTRAINT PRIMARY KEY (office_id)
     
-    , CONSTRAINT UNIQUE (office_id, office_street_address)
-    , CONSTRAINT UNIQUE (office_name)	-- for some reason it doesn't like the constraint being above?
+    -- , CONSTRAINT UNIQUE (office_id)
+    , CONSTRAINT UNIQUE UQ_office_name (office_name)
 );
 
 CREATE TABLE offices_departments (
@@ -45,7 +47,8 @@ CREATE TABLE jobs (
     
     , CONSTRAINT PRIMARY KEY (job_id)
     
-    , CONSTRAINT UNIQUE (job_id, job_name)
+-- 	, CONSTRAINT UNIQUE (job_id)
+    , CONSTRAINT UNIQUE UQ_job_name (job_name)
 );
 
 CREATE TABLE employees (
@@ -64,7 +67,7 @@ CREATE TABLE employees (
     , CONSTRAINT FOREIGN KEY (department_id) REFERENCES departments (department_id)
     , CONSTRAINT FOREIGN KEY (office_id) REFERENCES offices (office_id)
     
-    , CONSTRAINT UNIQUE (employee_id)
+--    , CONSTRAINT UNIQUE (employee_id)
 );
 
 -- make employee info table

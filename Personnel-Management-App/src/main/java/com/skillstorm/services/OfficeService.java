@@ -30,6 +30,21 @@ public class OfficeService {
 					.body(office);
 		}
 		
+		//checks names
+		List<String> names = repo.getOfficeNames();	//we get a list of Strings from DB
+		boolean match = false;			//this will trip if a name matches
+		for(String name : names)		//iterate and compare case insensitive to match the DB unique name constraint
+			if(name.toLowerCase().equals(office.getOfficeName().toLowerCase()))
+				match = true;
+		
+		if(match)
+		{
+			return ResponseEntity
+					.status(400)
+					.header("Error", "An office with this name already exists")
+					.body(office);
+		}
+		
 		return ResponseEntity
 				.status(201)
 				.header("Message", "Office created")

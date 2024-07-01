@@ -53,21 +53,19 @@ public class DepartmentController {
 		
 		
 		//UPDATE
-		@PutMapping
+		@PutMapping("/{id}")
 		public ResponseEntity<Department> updateDepartment(
-				@RequestParam int id,
-				@RequestParam String name, 
-				@RequestParam List<Employee> employees, 
-				@RequestParam List<Office> offices
+				@PathVariable int id,
+				@RequestBody Department department
 		)
 		{
-			return service.updateDepartment(id, name, employees, offices);
+			return service.updateDepartment(id, department.getDepartmentName(), department.getEmployees(), department.getOffices());
 		}
 		
-		
+		//doesn't work right now due to dependencies in the database. Needs try/catch probably
 		//DELETE
 		@DeleteMapping("/{id}")
-		public void deleteDepartment(@RequestBody int id)
+		public void deleteDepartment(@PathVariable int id)
 		{
 			service.deleteDepartmentById(id);
 		}

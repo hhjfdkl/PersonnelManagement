@@ -52,27 +52,29 @@ public class OfficeController {
 	
 	
 	//UPDATE
-	@PutMapping
+	@PutMapping("/{id}")
 	public ResponseEntity<Office> updateOffice(
-			@RequestParam int id,
-			@RequestParam String name, 
-			@RequestParam String address, 
-			@RequestParam String suite, 
-			@RequestParam String city, 
-			@RequestParam String state, 
-			@RequestParam String country, 
-			@RequestParam int max, 
-			@RequestParam List<Employee> employees, 
-			@RequestParam List<Department> departments
+			@PathVariable int id,
+			@RequestBody Office office
 	)
 	{
-		return service.updateOffice(id, name, address, suite, city, state, country, max, employees, departments);
+		return service.updateOffice(
+				id, 
+				office.getOfficeName(), 
+				office.getAddress(), 
+				office.getSuite(), 
+				office.getCity(), 
+				office.getState(), 
+				office.getCountry(), 
+				office.getMaxCapacity(), 
+				office.getEmployees(), 
+				office.getDepartments());
 	}
 	
-	
+	//due to foreign key constraints, we can't delete properly. Needs a try catch
 	//DELETE
 	@DeleteMapping("/{id}")
-	public void deleteOffice(@RequestBody int id)
+	public void deleteOffice(@PathVariable int id)
 	{
 		service.deleteOfficeById(id);
 	}
