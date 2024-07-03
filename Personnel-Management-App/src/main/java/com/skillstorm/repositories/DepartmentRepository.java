@@ -17,6 +17,7 @@ public interface DepartmentRepository extends CrudRepository <Department, Intege
 				value =
 				  "SELECT department_name "
 				+ "FROM departments"
+//				+ "WHERE department_name ILIKE '?1'"
 				, nativeQuery = true		
 		)
 		public List<String> getDepartmentNames();

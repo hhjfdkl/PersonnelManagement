@@ -1,6 +1,6 @@
 
 
-DROP TABLE IF EXISTS employees, departments, offices, offices_departments, jobs CASCADE; 
+DROP TABLE IF EXISTS employees, departments, offices, offices_departments, departments_jobs, jobs CASCADE; 
 
 
 CREATE TABLE departments (
@@ -9,8 +9,6 @@ CREATE TABLE departments (
     , description VARCHAR(1024)
     
     , CONSTRAINT PRIMARY KEY (department_id)
-    
---  , CONSTRAINT UNIQUE (department_id)  
     , CONSTRAINT UNIQUE UQ_department_name (department_name)
 );
 
@@ -27,7 +25,7 @@ CREATE TABLE offices (
     
     , CONSTRAINT PRIMARY KEY (office_id)
     
-    -- , CONSTRAINT UNIQUE (office_id)
+    
     , CONSTRAINT UNIQUE UQ_office_name (office_name)
 );
 
@@ -47,8 +45,17 @@ CREATE TABLE jobs (
     
     , CONSTRAINT PRIMARY KEY (job_id)
     
--- 	, CONSTRAINT UNIQUE (job_id)
+
     , CONSTRAINT UNIQUE UQ_job_name (job_name)
+);
+
+CREATE TABLE departments_jobs (
+	  department_id INT
+	, job_id INT
+    
+    , CONSTRAINT PRIMARY KEY (department_id, job_id)
+    , CONSTRAINT FOREIGN KEY (department_id) REFERENCES departments (department_id)
+    , CONSTRAINT FOREIGN KEY (job_id) REFERENCES jobs (job_id)
 );
 
 CREATE TABLE employees (
@@ -66,8 +73,6 @@ CREATE TABLE employees (
     , CONSTRAINT FOREIGN KEY (job_id) REFERENCES jobs (job_id)
     , CONSTRAINT FOREIGN KEY (department_id) REFERENCES departments (department_id)
     , CONSTRAINT FOREIGN KEY (office_id) REFERENCES offices (office_id)
-    
---    , CONSTRAINT UNIQUE (employee_id)
 );
 
 -- make employee info table

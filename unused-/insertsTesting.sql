@@ -61,4 +61,8 @@ VALUES
  , ('Alexander', 'Hamilton', 65.23, '2015/10/15', 3, 1, 2)
  ;
  
+
+ 
  select * from employees;
+ 
+ 

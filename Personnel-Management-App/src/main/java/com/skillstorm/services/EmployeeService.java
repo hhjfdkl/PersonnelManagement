@@ -1,8 +1,5 @@
 package com.skillstorm.services;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.skillstorm.models.Department;
 import com.skillstorm.models.Employee;
-import com.skillstorm.models.Job;
 import com.skillstorm.models.Office;
 import com.skillstorm.repositories.EmployeeRepository;
 
@@ -66,7 +62,7 @@ public class EmployeeService {
 		
 		
 		//UPDATE functionality
-		public ResponseEntity<Employee> updateEmployee(int id, String firstName, String lastName, BigDecimal hourlyPay, LocalDate hireDate, Department department, Office office, Job job)
+		public ResponseEntity<Employee> updateEmployee(int id, String firstName, String lastName, Department department, Office office)
 		{
 			if(!repo.existsById(id))
 				{
@@ -78,7 +74,7 @@ public class EmployeeService {
 			return ResponseEntity
 					.status(200)
 					.header("Message", "Employee successfully updated")
-					.body(repo.save(new Employee(id, firstName, lastName, hourlyPay, hireDate, department, office, job)));
+					.body(repo.save(new Employee(id, firstName, lastName, department, office)));
 		}
 		
 		
