@@ -20,5 +20,23 @@ public interface OfficeRepository extends CrudRepository<Office, Integer>
 	)
 	public List<String> getOfficeNames();
 	
+	@Query(
+			value = 
+			  "SELECT office_name "
+			+ "FROM offices "
+			+ "WHERE office_name LIKE ?1"
+			, nativeQuery = true
+	)
+	public String getOfficeNameByName(String name);
+	
+	@Query(
+			value = 
+			  "SELECT office_name "
+			+ "FROM offices "
+			+ "WHERE office_id = ?1"
+			, nativeQuery = true
+	)
+	public String getOfficeNameById(int id);
+	
 	
 }

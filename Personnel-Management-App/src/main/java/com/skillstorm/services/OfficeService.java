@@ -29,12 +29,10 @@ public class OfficeService {
 					.body(office);
 		}
 		
-		//checks names
-		List<String> names = repo.getOfficeNames();	//we get a list of Strings from DB
-		boolean match = false;			//this will trip if a name matches
-		for(String name : names)		//iterate and compare case insensitive to match the DB unique name constraint
-			if(name.toLowerCase().equals(office.getOfficeName().toLowerCase()))
-				match = true;
+		//checks name
+		
+		boolean match = office.getOfficeName().equals(repo.getOfficeNameByName(office.getOfficeName()));			//this will trip if a name matches
+		
 		
 		if(match)
 		{
@@ -78,7 +76,7 @@ public class OfficeService {
 	
 	
 	//UPDATE functionality
-	public ResponseEntity<Office> updateOffice(int id, String name, String address, String suite, String city, String state, String country, int max, List<Employee> employees, List<Department> departments)
+	public ResponseEntity<Office> updateOffice(int id, String name, String address, String suite, String city, String state, int zip, int max, List<Employee> employees, List<Department> departments) //
 	{
 		if(!repo.existsById(id))
 			{
@@ -90,7 +88,7 @@ public class OfficeService {
 		return ResponseEntity
 				.status(200)
 				.header("Message", "Office successfully updated")
-				.body(repo.save(new Office(id, name, address, suite, city, state, country, max, employees, departments)));
+				.body(repo.save(new Office(id, name, address, suite, city, state, zip, max, employees, departments))); //
 	}
 	
 	

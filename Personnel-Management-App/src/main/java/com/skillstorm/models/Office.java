@@ -3,7 +3,9 @@ package com.skillstorm.models;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,6 +21,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "offices")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "officeId")
 public class Office {
 
 	@Id
@@ -29,20 +32,20 @@ public class Office {
 	@Column(name = "office_name")
 	private String officeName;
 	
-	@Column(name = "office_street_address")
+	@Column(name = "street_address")
 	private String address;
 	
-	@Column(name = "office_address_suite")
+	@Column(name = "address_suite")
 	private String suite;
 	
-	@Column(name = "office_location_city")
+	@Column(name = "location_city")
 	private String city;
 	
-	@Column(name = "office_location_province")
+	@Column(name = "location_state")
 	private String state;
 	
-	@Column(name = "office_location_country")
-	private String country;
+	@Column(name = "zip_code")
+	private int zip;
 	
 	@Column(name = "max_capacity")
 	private int maxCapacity;
@@ -70,7 +73,7 @@ public class Office {
 	}
 	
 	public Office(int officeId, String officeName, String address, String suite, String city, 
-			String state, String country, int maxCapacity, List<Employee> employees, List<Department> departments)
+			String state, int zip, int maxCapacity, List<Employee> employees, List<Department> departments) //
 	{
 		super();
 		this.officeId = officeId;
@@ -79,7 +82,7 @@ public class Office {
 		this.suite = suite;
 		this.city = city;
 		this.state = state;
-		this.country = country;
+		this.zip = zip;
 		this.maxCapacity = maxCapacity;
 		this.employees = employees;
 		this.departments = departments;
@@ -134,12 +137,12 @@ public class Office {
 		this.state = state;
 	}
 
-	public String getCountry() {
-		return country;
+	public int getZip() {
+		return zip;
 	}
 
-	public void setCountry(String country) {
-		this.country = country;
+	public void setZip(int zip) {
+		this.zip = zip;
 	}
 
 	public int getMaxCapacity() {
@@ -175,9 +178,11 @@ public class Office {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, city, country, departments, employees, maxCapacity, officeId, officeName, state,
-				suite);
+		return Objects.hash(address, city, zip, maxCapacity, officeId, officeName, state,
+				suite, departments, employees); //
 	}
+
+	
 
 	@Override
 	public boolean equals(Object obj) {
@@ -189,8 +194,8 @@ public class Office {
 			return false;
 		Office other = (Office) obj;
 		return Objects.equals(address, other.address) && Objects.equals(city, other.city)
-				&& Objects.equals(country, other.country) && Objects.equals(departments, other.departments)
-				&& Objects.equals(employees, other.employees) && maxCapacity == other.maxCapacity
+				&& Objects.equals(zip, other.zip) 
+				&& Objects.equals(departments, other.departments) && Objects.equals(employees, other.employees) && maxCapacity == other.maxCapacity
 				&& officeId == other.officeId && Objects.equals(officeName, other.officeName)
 				&& Objects.equals(state, other.state) && Objects.equals(suite, other.suite);
 	}

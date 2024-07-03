@@ -12,13 +12,31 @@ import com.skillstorm.models.Department;
 public interface DepartmentRepository extends CrudRepository <Department, Integer>
 {
 	
-	//method to get names so we can ensure the server doesn't crash if duplicate name is entered
+	//grabs all names (if needed)
 		@Query(
 				value =
 				  "SELECT department_name "
 				+ "FROM departments"
-//				+ "WHERE department_name ILIKE '?1'"
 				, nativeQuery = true		
 		)
 		public List<String> getDepartmentNames();
+		
+		//grabs one name (to compare on creation)
+		@Query(
+				value = 
+				  "SELECT department_name "
+				+ "FROM departments "
+				+ "WHERE department_name LIKE ?1"
+				, nativeQuery = true
+		)
+		public String getDepartmentNameByName(String name);
+		
+		@Query(
+				value = 
+				  "SELECT department_name "
+				+ "FROM departments "
+				+ "WHERE department_id = ?1"
+				, nativeQuery = true
+		)
+		public String getDepartmentNameById(int id);
 }

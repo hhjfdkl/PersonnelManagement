@@ -3,7 +3,11 @@ package com.skillstorm.models;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -17,6 +21,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "departments")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "departmentId")
 public class Department {
 	
 	@Id
@@ -42,7 +47,7 @@ public class Department {
 		super();
 	}
 	
-	public Department(int departmentId, String departmentName, List<Employee> employees, List<Office> offices)
+	public Department(int departmentId, String departmentName, List<Employee> employees, List<Office> offices) //
 	{
 		super();
 		this.departmentId = departmentId;
@@ -92,7 +97,7 @@ public class Department {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(departmentId, departmentName, employees, offices);
+		return Objects.hash(departmentId, departmentName, employees, offices); //
 	}
 
 	@Override
@@ -105,7 +110,8 @@ public class Department {
 			return false;
 		Department other = (Department) obj;
 		return departmentId == other.departmentId && Objects.equals(departmentName, other.departmentName)
-				&& Objects.equals(employees, other.employees) && Objects.equals(offices, other.offices);
+				&& Objects.equals(employees, other.employees) 
+				&& Objects.equals(offices, other.offices);
 	}
 
 }

@@ -2,7 +2,10 @@ package com.skillstorm.models;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,9 +15,11 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "employees")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "employeeId")
 public class Employee {
 
 	@Id
@@ -28,8 +33,7 @@ public class Employee {
 	@Column(name = "last_name")
 	private String lastName;
 	
-	
-	//This will get the department this employee belongs to
+		//This will get the department this employee belongs to
 	@ManyToOne
 	@JoinColumn(name = "department_id", referencedColumnName = "department_id")
 	@JsonIgnoreProperties("employees")

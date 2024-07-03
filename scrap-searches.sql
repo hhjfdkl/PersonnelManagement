@@ -11,3 +11,4 @@ select * from offices_departments;
 
 SELECT * from employees;
 
+SELECT * FROM employees WHERE first_name LIKE 'jon';

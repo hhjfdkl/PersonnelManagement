@@ -29,12 +29,10 @@ public class DepartmentService {
 					.body(department);
 		}
 		
-		//checks names
-				List<String> names = repo.getDepartmentNames();	//we get a list of Strings from DB
-				boolean match = false;			//this will trip if a name matches
-				for(String name : names)		//iterate and compare case insensitive to match the DB unique name constraint
-					if(name.toLowerCase().equals(department.getDepartmentName().toLowerCase()))
-						match = true;
+		//checks name
+				
+				boolean match = department.getDepartmentName().equals(repo.getDepartmentNameByName(department.getDepartmentName()));			//this will trip if a name matches
+				
 				
 				if(match)
 				{
@@ -78,7 +76,7 @@ public class DepartmentService {
 	
 	
 	//UPDATE functionality
-	public ResponseEntity<Department> updateDepartment(int id, String name, List<Employee> employees, List<Office> offices) 
+	public ResponseEntity<Department> updateDepartment(int id, String name, List<Employee> employees, List<Office> offices) //
 	{
 		if(!repo.existsById(id))
 			{
@@ -90,7 +88,7 @@ public class DepartmentService {
 		return ResponseEntity
 				.status(200)
 				.header("Message", "Department successfully updated")
-				.body(repo.save(new Department(id, name, employees, offices)));
+				.body(repo.save(new Department(id, name, employees, offices))); //
 	}
 	
 	

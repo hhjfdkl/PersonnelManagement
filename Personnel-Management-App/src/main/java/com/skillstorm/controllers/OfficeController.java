@@ -61,9 +61,9 @@ public class OfficeController {
 				office.getSuite(), 
 				office.getCity(), 
 				office.getState(), 
-				office.getCountry(), 
+				office.getZip(), 
 				office.getMaxCapacity(), 
-				office.getEmployees(), 
+			    office.getEmployees(), 
 				office.getDepartments());
 	}
 	
