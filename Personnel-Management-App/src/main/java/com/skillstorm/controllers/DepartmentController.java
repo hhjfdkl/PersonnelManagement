@@ -55,7 +55,7 @@ public class DepartmentController {
 				@RequestBody Department department
 		)
 		{
-			return service.updateDepartment(id, department.getDepartmentName(), department.getEmployees(), department.getOffices()); //
+			return service.updateDepartment(id, department.getDepartmentName(), department.getEmployees()); //
 		}
 		
 		//doesn't work right now due to dependencies in the database. Needs try/catch probably

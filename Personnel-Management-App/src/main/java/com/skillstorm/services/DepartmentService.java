@@ -76,7 +76,7 @@ public class DepartmentService {
 	
 	
 	//UPDATE functionality
-	public ResponseEntity<Department> updateDepartment(int id, String name, List<Employee> employees, List<Office> offices) //
+	public ResponseEntity<Department> updateDepartment(int id, String name, List<Employee> employees) //
 	{
 		if(!repo.existsById(id))
 			{
@@ -88,7 +88,7 @@ public class DepartmentService {
 		return ResponseEntity
 				.status(200)
 				.header("Message", "Department successfully updated")
-				.body(repo.save(new Department(id, name, employees, offices))); //
+				.body(repo.save(new Department(id, name, employees))); //
 	}
 	
 	

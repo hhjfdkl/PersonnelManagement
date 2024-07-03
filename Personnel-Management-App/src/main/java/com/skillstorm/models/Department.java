@@ -21,7 +21,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "departments")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "departmentId")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "departmentId")
 public class Department {
 	
 	@Id
@@ -37,9 +37,7 @@ public class Department {
 	@JsonIgnoreProperties("department")
 	private List<Employee> employees;
 	
-	@ManyToMany(mappedBy = "departments")
-	@JsonIgnoreProperties("departments")
-	private List<Office> offices;
+	
 
 	
 	public Department()
@@ -47,13 +45,12 @@ public class Department {
 		super();
 	}
 	
-	public Department(int departmentId, String departmentName, List<Employee> employees, List<Office> offices) //
+	public Department(int departmentId, String departmentName, List<Employee> employees) //
 	{
 		super();
 		this.departmentId = departmentId;
 		this.departmentName = departmentName;
 		this.employees = employees;
-		this.offices = offices;
 	}
 	
 	
@@ -81,13 +78,7 @@ public class Department {
 		this.employees = employees;
 	}
 
-	public List<Office> getOffices() {
-		return offices;
-	}
 
-	public void setOffices(List<Office> offices) {
-		this.offices = offices;
-	}
 
 	
 	@Override
@@ -97,7 +88,7 @@ public class Department {
 	
 	@Override
 	public int hashCode() {
-		return Objects.hash(departmentId, departmentName, employees, offices); //
+		return Objects.hash(departmentId, departmentName, employees); //
 	}
 
 	@Override
@@ -110,8 +101,7 @@ public class Department {
 			return false;
 		Department other = (Department) obj;
 		return departmentId == other.departmentId && Objects.equals(departmentName, other.departmentName)
-				&& Objects.equals(employees, other.employees) 
-				&& Objects.equals(offices, other.offices);
+				&& Objects.equals(employees, other.employees);
 	}
 
 }

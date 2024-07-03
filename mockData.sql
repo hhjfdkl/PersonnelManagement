@@ -22,30 +22,7 @@ VALUES
 , ('Public Relations', 'Manages company image, media relations, and public communications.') -- 10
 ; 
 
-INSERT INTO offices_departments (office_id, department_id)
-VALUES
-  (3,9)
-, (3,10)
-, (2,6)
-, (1,6)
-, (2,1)
-, (1,1)
-, (3,5)
-, (1,5)
-, (2,5)
-, (4,5)
-, (2,4)
-, (1,3)
-, (1,2)
-, (2,2)
-, (4,6)
-, (1,7)
-, (2,7)
-, (4,7)
-, (1,8)
-, (2,8)
-, (4,8)
-;
+
 
 
 INSERT INTO employees (first_name, last_name, department_id, office_id) 

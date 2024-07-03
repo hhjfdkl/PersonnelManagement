@@ -21,7 +21,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "offices")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "officeId")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "officeId")
 public class Office {
 
 	@Id
@@ -56,15 +56,7 @@ public class Office {
 	@JsonIgnoreProperties("office")
 	private List<Employee> employees;
 	
-	//mapping many to many for office_department
-	@ManyToMany
-	@JoinTable(
-			  name = "offices_departments"
-			, joinColumns = @JoinColumn(name = "office_id")
-			, inverseJoinColumns = @JoinColumn(name = "department_id")
-	)
-	@JsonIgnoreProperties("offices")
-	private List<Department> departments;
+	
 
 	
 	public Office()
@@ -73,7 +65,7 @@ public class Office {
 	}
 	
 	public Office(int officeId, String officeName, String address, String suite, String city, 
-			String state, int zip, int maxCapacity, List<Employee> employees, List<Department> departments) //
+			String state, int zip, int maxCapacity, List<Employee> employees) //
 	{
 		super();
 		this.officeId = officeId;
@@ -85,7 +77,6 @@ public class Office {
 		this.zip = zip;
 		this.maxCapacity = maxCapacity;
 		this.employees = employees;
-		this.departments = departments;
 	}
 	
 	
@@ -161,13 +152,6 @@ public class Office {
 		this.employees = employees;
 	}
 
-	public List<Department> getDepartments() {
-		return departments;
-	}
-
-	public void setDepartments(List<Department> departments) {
-		this.departments = departments;
-	}
 
 	
 	
@@ -179,7 +163,7 @@ public class Office {
 	@Override
 	public int hashCode() {
 		return Objects.hash(address, city, zip, maxCapacity, officeId, officeName, state,
-				suite, departments, employees); //
+				suite, employees); //
 	}
 
 	
@@ -195,7 +179,7 @@ public class Office {
 		Office other = (Office) obj;
 		return Objects.equals(address, other.address) && Objects.equals(city, other.city)
 				&& Objects.equals(zip, other.zip) 
-				&& Objects.equals(departments, other.departments) && Objects.equals(employees, other.employees) && maxCapacity == other.maxCapacity
+				&& Objects.equals(employees, other.employees) && maxCapacity == other.maxCapacity
 				&& officeId == other.officeId && Objects.equals(officeName, other.officeName)
 				&& Objects.equals(state, other.state) && Objects.equals(suite, other.suite);
 	}

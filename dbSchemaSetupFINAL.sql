@@ -1,6 +1,6 @@
 
 
-DROP TABLE IF EXISTS employees, departments, offices, offices_departments CASCADE; 
+DROP TABLE IF EXISTS employees, departments, offices CASCADE; 
 
 
 CREATE TABLE departments (
@@ -27,14 +27,6 @@ CREATE TABLE offices (
     , CONSTRAINT UNIQUE UQ_office_name (office_name)
 );
 
-CREATE TABLE offices_departments (
-	  office_id INT
-	, department_id INT
-    
-    , CONSTRAINT PRIMARY KEY (office_id, department_id)
-    , CONSTRAINT FOREIGN KEY (office_id) REFERENCES offices (office_id)
-    , CONSTRAINT FOREIGN KEY (department_id) REFERENCES departments (department_id)
-);
 
 
 

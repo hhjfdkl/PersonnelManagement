@@ -19,7 +19,7 @@ import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "employees")
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "employeeId")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "employeeId")
 public class Employee {
 
 	@Id

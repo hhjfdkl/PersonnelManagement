@@ -63,8 +63,7 @@ public class OfficeController {
 				office.getState(), 
 				office.getZip(), 
 				office.getMaxCapacity(), 
-			    office.getEmployees(), 
-				office.getDepartments());
+			    office.getEmployees());
 	}
 	
 	//due to foreign key constraints, we can't delete properly. Needs a try catch

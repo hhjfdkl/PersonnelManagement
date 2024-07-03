@@ -9,24 +9,29 @@ import com.skillstorm.models.Employee;
 @Repository
 public interface EmployeeRepository extends CrudRepository<Employee, Integer> 
 {
-	//we should probably put a check against office capacity either here or in office repository to check against max capacity
 	
 	
+
+	//check to make sure we're not exceeding the max capacity of the office (for our UPDATE and CREATE methods)
+	//This method specifically grabs the total employees in the office
 	@Query(
 			value = 
-			  "SELECT first_name "
+			  "SELECT COUNT(*) "
+			+ "FROM employees AS e "
+			+ "JOIN offices AS o ON o.office_id = e.office_id "
+			+ "WHERE e.office_id = ?1"
+			, nativeQuery = true
+	)
+	public int getTotalEmployeesInOffice(int officeId);
+	
+	//used to check if our employee is already in this office
+	//this is for our UPDATE method
+	@Query (
+			value = 
+			  "SELECT office_id "
 			+ "FROM employees "
 			+ "WHERE employee_id = ?1"
 			, nativeQuery = true
 	)
-	public String getEmployeeFirstNameById(int id);
-	
-	@Query(
-			value = 
-			  "SELECT last_name "
-			+ "FROM employees "
-			+ "WHERE employee_id = ?1"
-			, nativeQuery = true
-	)
-	public String getEmployeeLastNameById(int id);
+	public int getOfficeIdOfEmployee(int employeeId);
 }

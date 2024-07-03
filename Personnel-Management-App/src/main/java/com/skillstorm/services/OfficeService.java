@@ -76,7 +76,7 @@ public class OfficeService {
 	
 	
 	//UPDATE functionality
-	public ResponseEntity<Office> updateOffice(int id, String name, String address, String suite, String city, String state, int zip, int max, List<Employee> employees, List<Department> departments) //
+	public ResponseEntity<Office> updateOffice(int id, String name, String address, String suite, String city, String state, int zip, int max, List<Employee> employees) //
 	{
 		if(!repo.existsById(id))
 			{
@@ -88,7 +88,7 @@ public class OfficeService {
 		return ResponseEntity
 				.status(200)
 				.header("Message", "Office successfully updated")
-				.body(repo.save(new Office(id, name, address, suite, city, state, zip, max, employees, departments))); //
+				.body(repo.save(new Office(id, name, address, suite, city, state, zip, max, employees))); //
 	}
 	
 	

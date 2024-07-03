@@ -28,6 +28,18 @@ public class EmployeeService {
 						.body(employee);
 			}
 			
+			//this section is to confirm we can actually add the employee to the office
+			int officeId = employee.getOffice().getOfficeId();
+			int officeMaxCapacity = employee.getOffice().getMaxCapacity();
+			int employeesAfterAddition = repo.getTotalEmployeesInOffice(officeId) + 1;
+			if(employeesAfterAddition > officeMaxCapacity)
+			{
+				return ResponseEntity
+						.status(400)
+						.header("Error", "The office will exceed the max limit. Too many employees are here.")
+						.body(employee);
+			}
+			
 			return ResponseEntity
 					.status(201)
 					.header("Message", "Employee created")
@@ -71,6 +83,22 @@ public class EmployeeService {
 							.header("Error", "Unable to find employee specified - try again")
 							.body(null);
 				}
+			
+			
+			int officeId = office.getOfficeId();
+			if(officeId != repo.getOfficeIdOfEmployee(id)) 
+			{
+				int officeMaxCapacity = office.getMaxCapacity();
+				int employeesAfterAddition = repo.getTotalEmployeesInOffice(officeId) + 1;
+				if(employeesAfterAddition > officeMaxCapacity)
+				{
+					return ResponseEntity
+							.status(400)
+							.header("Error", "The office will exceed the max limit. Too many employees are here.")
+							.body(null);
+				}
+			}
+			
 			return ResponseEntity
 					.status(200)
 					.header("Message", "Employee successfully updated")
