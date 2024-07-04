@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class DepartmentCardComponent { 
 
 //could use a data pass service in constructor if needed (as in class example)
-constructor( private router: Router) {}
+constructor( private router: Router ) {}
 
 //value will be passed in from parent class
 @Input() department: Department = new Department(0, 'test', [ { employeeFirstName: 'test'} ]);

@@ -1,1 +1,70 @@
 <p>departments works!</p>
+
+
+<div class="buttons">
+    <h2>CRUD buttons</h2>
+
+    <button (click)="getAllDepartments()">Get All</button>
+</div>
+
+<div class="buttons">
+
+    <h2>Get Department by ID</h2>
+    <form #idForm>
+
+        <label for="formDepartmentId">Department ID to Get: </label>
+        <input 
+            type="number"
+            id="formDepartmentId"
+            name="formDepartmentId"
+            [(ngModel)]="formDepartmentId" #formId
+        >
+        <button (click)="getDepartmentById()">SUBMIT</button>
+        <button (click)="idForm.reset()">RESET</button>
+    </form>
+
+    @if(departmentNotThere) {
+        <div style="color: red;">
+            Department with ID {{ formDepartmentId }} doesn't exist!
+        </div>
+    }
+</div>
+
+<div class="buttons">
+    <h2>Create Department</h2>
+    <form>
+        <!-- <label for="postFormId">Department ID: </label>    
+        <input 
+            type="number"
+            id="postFormId"
+            name="postFormId"
+            [(ngModel)]="formDepartment.departmentId"
+        > --> <!-- omitting this since id is auto populated. -->
+
+        <label for="postFormName">Department Name: </label>
+        <input 
+            type="text"
+            id="postFormName"
+            name="postFormName"
+            [(ngModel)]="formDepartment.departmentName"
+        >
+
+        <button (click)="addDepartment()"
+            [disabled]="departmentNameExists(formDepartment.departmentName)">SUBMIT</button>
+        <!--@if (departmentIds.includes(formDepartment.departmentId)) {
+            <div style="color: red">
+                Department ID already exists!
+            </div>
+        }--> <!-- not needed -->
+
+        @if(departmentNameExists(formDepartment.departmentName)) {  
+            <div style="color:red">
+                Department Name already exists!
+            </div>
+        }
+    </form>
+</div>
+
+@for(currentDept of departments; track $index) {
+    <app-department-card [department]="currentDept" (deleteDepartmentEvent)="processDeleteEvent($event)"></app-department-card>
+}
