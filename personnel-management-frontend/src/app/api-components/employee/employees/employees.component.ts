@@ -109,8 +109,6 @@ export class EmployeesComponent {
     this.httpService.getOfficeById(this.formOfficeId).subscribe(
       { //using next / error in case we don't get anything back
         next: data => {
-          // this.offices = [];
-          // this.offices.push(data.body);
           this.officeSelected = true;
           this.formOffice = data.body;
           this.officeNotThere = false;
