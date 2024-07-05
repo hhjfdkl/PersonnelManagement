@@ -1,6 +1,8 @@
+<h2 class="top">CRUD buttons</h2>
+<div class="CRUD">
 <div class="buttons">
-    <h2>CRUD buttons</h2>
-
+    
+    <h2>Repopulate All Employees</h2>
     <button (click)="getAllEmployees()">Get All</button>
 </div>
 
@@ -104,7 +106,7 @@
         
     </form>
 </div>
-
+</div>
 @for(currentEmployee of employees; track $index) {
     <app-employee-card [employee]="currentEmployee" (deleteEmployeeEvent)="processDeleteEvent($event)"></app-employee-card>
 }

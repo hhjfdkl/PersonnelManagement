@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files
 * {
     margin: 0px;
     padding: 0px;
@@ -13,16 +13,16 @@ button {
     padding: 1em;
     border: solid 1px black;
     margin-right: 6px;
-    /* rounds the corners */
+    
     border-radius: 8px;
 }
-
+*/
 button:hover {
     background-color: darkkhaki;
-    /* turns your cursor into a little hand */
+    
     cursor: pointer;
 }
-
+/*
 .buttons {
     margin-bottom: 24px;
 }
@@ -30,8 +30,6 @@ button:hover {
 input {
     border: solid 1px black;
     font-size: 16px;
-    /* width: 50px; */
-    /* margin-right: 24px; */
     padding: .5em;
 }
 
@@ -80,11 +78,22 @@ article button:hover {
 form {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
+    
+} */
+
+.CRUD{
+    display: flex;
+    flex-wrap:wrap;
+   
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-bottom: 20px;
     
 }
 
-.CRUD{
-    background-color: orange;
-    display: flex;
-    flex-wrap:wrap;
+.top {
+    text-align: center;
 }

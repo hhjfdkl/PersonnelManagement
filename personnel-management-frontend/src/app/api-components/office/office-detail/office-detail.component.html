@@ -1,6 +1,7 @@
 <h2>DETAILS FOR OFFICE</h2>
 
 <h3>Office ID {{ office.officeId }}: {{ office.officeName }}</h3>
+<h4>Max Capacity: {{ office.maxCapacity }}</h4>
 <h4>No. of Employees: {{ office.employees.length }}</h4>
 <h3>Office Address:</h3>
 <h4>{{ office.address }} {{ office.suite }}</h4>
@@ -39,7 +40,7 @@
     <p>No employees in this office. This office can be deleted.</p>
 }
 
-<h3>Update This Office </h3>
+<h3 class="updateStart">Update This Office </h3>
 
 <form class="submissionForm">
     <label for="updateName">Office Name: </label>

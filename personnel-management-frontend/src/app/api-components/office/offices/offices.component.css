@@ -1,0 +1,82 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+h2 {
+    color: #007bff;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+h3 {
+    color: #343a40;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+h4 {
+    color: #495057;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.buttons {
+    flex: 1 1 300px;
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 10px;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #495057;
+}
+
+input {
+    width: calc(100% - 22px);
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+button:last-child {
+    margin-right: 0;
+}
+
+form {
+    margin-top: 10px;
+}
+
+div[style="color: red;"] {
+    margin-top: 10px;
+    font-weight: bold;
+}
+

@@ -1,6 +1,9 @@
-<div class="buttons">
-    <h2>CRUD buttons</h2>
+<h2 class="top">CRUD buttons</h2>
+<div class="CRUD">
 
+<div class="buttons">
+    
+    <h2>Repopulate All Departments</h2>
     <button (click)="getAllDepartments()">Get All</button>
 </div>
 
@@ -54,7 +57,7 @@
         }
     </form>
 </div>
-
+</div>
 @for(currentDept of departments; track $index) {
     <app-department-card [department]="currentDept" (deleteDepartmentEvent)="processDeleteEvent($event)"></app-department-card>
 }

@@ -1,0 +1,106 @@
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+h2, h3, h4 {
+    margin: 10px 0;
+    padding: 0;
+}
+
+h2 {
+    color: #007bff;
+    font-size: 24px;
+}
+
+h3 {
+    color: #343a40;
+    font-size: 20px;
+}
+
+h4 {
+    color: #6c757d;
+    font-size: 16px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+tbody {
+    width:100%
+}
+
+thead th {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+}
+
+tbody tr {
+    border-bottom: 1px solid #dee2e6;
+    width: 100%
+}
+
+tbody tr.display1 {
+    background-color: #e9ecef;
+}
+
+tbody tr.display2 {
+    background-color: #f8f9fa;
+}
+
+tbody td {
+    padding: 10px;
+    width: 740px
+    
+}
+
+/* Form  */
+.submissionForm {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+.submissionForm label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #495057;
+}
+
+.submissionForm input {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    font-size: 16px;
+}
+
+.submissionForm button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.submissionForm button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
