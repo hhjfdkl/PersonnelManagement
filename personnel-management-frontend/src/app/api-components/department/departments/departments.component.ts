@@ -22,7 +22,7 @@ export class DepartmentsComponent {
 
   
 
-  formDepartment: Department = new Department(0,'',[]); //for our create department method
+  formDepartment: Department = new Department(0,'',[]); //for our add department method
   formDepartmentId: number = 0; //base value for our get dept by id form
   departmentNotThere: boolean = false; //bool to change to true if we don't find anything from our db
 

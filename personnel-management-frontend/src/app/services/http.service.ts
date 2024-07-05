@@ -31,14 +31,14 @@ export class HttpService
   }
 
   //READ / GET
-  getAllOffices()
+  getAllOffices(): Observable<HttpResponse<any>>
   {
     return this.http.get(
       this.url + 'office', {observe:'response'}
     );
   }
 
-  getOfficeById(officeId: number)
+  getOfficeById(officeId: number): Observable<HttpResponse<any>>
   {
     return this.http.get(
       this.url + 'office/' + officeId, {observe:'response'}
