@@ -16,22 +16,23 @@ export class DepartmentCardComponent {
 constructor( private router: Router ) {}
 
 //value will be passed in from parent class
-@Input() department: Department = new Department(0, 'test', [ { employeeFirstName: 'test'} ]);
+@Input() department: Department = new Department(0, 'test', [ { firstName: 'test', lastName: 'test'} ]);
 
 //parent will listen for event to allow action to take place
 @Output() deleteDepartmentEvent = new EventEmitter<number>();
 
-//method to delete department
+//method to delete department which sends event
 deleteThisDepartment()
 {
   this.deleteDepartmentEvent.emit(this.department.departmentId);
 }
 
-//method to update department
-editDepartment()
+//method to go to department info screen. Moves user to the detail page for this department
+viewDepartment()
 {
   this.router.navigate(['department/' + this.department.departmentId])
 }
+
 
 
 

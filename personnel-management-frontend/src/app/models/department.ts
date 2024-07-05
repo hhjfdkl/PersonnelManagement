@@ -1,15 +1,17 @@
+import { Employee } from "./employee";
+
 export class Department 
 {
 
 
     departmentId: number;
     departmentName: string;
-    employees: object[];
+    employees: any[];
 
     constructor(
           departmentId: number
         , departmentName: string
-        , employees: object[]
+        , employees: any[]
     )
     {
         this.departmentId = departmentId;
@@ -17,5 +19,9 @@ export class Department
         this.employees = employees;
     }
 
+    getLimitedEmployees(startIndex: number, endIndex: number): any[]
+    {
+        return this.employees.slice(startIndex, endIndex);
+    }
 
 }

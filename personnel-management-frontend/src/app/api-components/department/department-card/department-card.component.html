@@ -1,1 +1,26 @@
 <p>department-card works!</p>
+
+
+<article>
+
+    <h3>{{ department.departmentName }}</h3>
+    <h4>Department ID: {{ department.departmentId }}</h4>
+    <h5>Employees: {{ department.employees.length }}</h5>
+    <ul>
+        @for (employee of department.getLimitedEmployees(0,3); track $index)
+        {
+            <li>{{ employee.lastName }}, {{ employee.firstName }}</li>
+        }
+    </ul>
+
+    
+    
+    <button (click)="deleteThisDepartment()"
+    [disabled]="department.employees.length > 0"
+    >
+    DELETE
+    </button> <!-- delete button only shows available when there are no employees in the department -->
+    
+    <button (click)="viewDepartment()">VIEW</button> <!--this just takes us to the dept info. So why don't we just rename it?-->
+
+</article>

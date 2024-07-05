@@ -1,3 +1,5 @@
+import { Employee } from "./employee";
+
 export class Office 
 {
     officeId: number;
@@ -8,6 +10,7 @@ export class Office
     state: string;
     zip: number;
     maxCapacity: number;
+    employees: any[];
 
     constructor(
           officeId: number
@@ -18,6 +21,7 @@ export class Office
         , state: string
         , zip:number
         , maxCapacity:number
+        , employees:any[]
     )
     {
         this.officeId = officeId;
@@ -28,6 +32,7 @@ export class Office
         this.state = state;
         this.zip = zip;
         this.maxCapacity = maxCapacity;
+        this.employees = employees;
 
     }
 

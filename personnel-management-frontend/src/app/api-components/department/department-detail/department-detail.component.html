@@ -1,1 +1,56 @@
 <p>department-detail works!</p>
+
+<h2>DETAILS FOR DEPARTMENT</h2>
+
+<h3>Department ID {{ dept.departmentId }}: {{ dept.departmentName }}</h3>
+
+<!-- if employees are in this department, do something -->
+@if (dept.employees.length) 
+{
+    <table>
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Office</th>
+            </tr>
+        </thead>
+    </table>
+
+    <tbody>
+        <!--for loop to display our employee info based on what we get back-->
+        @for(employee of dept.employees; track $index)
+        {   <!--assigning class to every other row generated (will make viewing easier for user)-->
+            <tr [ngClass]="{
+                'display1': $index %2 === 0,
+                'display2': $index %2 === 1
+            }"> <!--for each, add a click event to navigate to respective data point (so clicking on ee name will take you to that ee's info page, same w/ office)-->
+                <td>{{ employee.employeeId }}</td>
+                <td>{{ employee.lastName }}, {{ employee.firstName }}</td>  <!--probably place here with a hover and click event-->
+                <td>{{ employee.office.officeName }}</td> <!--also one for office-->
+            </tr>
+        }
+    </tbody>
+} @else {
+    <p>No employees in this department. This department can be deleted.</p>
+}
+
+<h3>Update This Department</h3>
+
+<form>
+    <label for="updateName">Department Name: </label>
+    <input 
+        type="text" 
+        id="updateName" 
+        name="updateName"
+        [(ngModel)]="updatedDepartment.departmentName"
+    >
+
+    <!--this button shouldn't press if dept name already exists. need to pass that info to this component-->
+    <button 
+        (click)="updateDepartment()"
+    >UPDATE</button>
+
+       
+</form>

@@ -1,17 +1,20 @@
+import { Department } from "./department";
+import { Office } from "./office";
+
 export class Employee 
 {
     employeeId: number;
     firstName: string;
     lastName: string;
-    department: object;    
-    office: object;
+    department: any;    
+    office: any;
 
     constructor(
           employeeId: number
         , firstName: string
         , lastName: string
-        , department: object
-        , office: object
+        , department: any
+        , office: any
     )
     {
         this.employeeId = employeeId;

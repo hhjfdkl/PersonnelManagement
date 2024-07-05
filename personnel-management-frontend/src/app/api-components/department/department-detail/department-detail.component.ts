@@ -47,6 +47,9 @@ export class DepartmentDetailComponent {
       this.getDepartmentById();
     })
   }
-  
+
+
+
+
 
 }
