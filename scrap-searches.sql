@@ -20,3 +20,5 @@ FROM employees AS e
 JOIN offices AS o ON o.office_id = e.office_id
 WHERE e.office_id = 3;
 
+
+
