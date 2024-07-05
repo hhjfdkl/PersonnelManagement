@@ -1,0 +1,24 @@
+nav {
+    background-color:rgb(205, 187, 187);
+}
+
+nav a {
+    display: inline-block;
+    font-size: 17px;
+    font-weight: bold;
+    text-decoration: none;
+    /* with equal padding t/b and l/r, you can use two args */
+    padding: .5em 1.5em;
+    color: white;
+}
+
+nav a:hover {
+    background-color: rgba(85, 107, 47, 0.5);
+}
+
+nav span {
+    font-style: italic;
+    font-size: 15px;
+    font-weight: bold;
+    color: blue;
+}

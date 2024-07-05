@@ -1,1 +1,103 @@
-<p>office-detail works!</p>
+<h2>DETAILS FOR OFFICE</h2>
+
+<h3>Office ID {{ office.officeId }}: {{ office.officeName }}</h3>
+<h4>No. of Employees: {{ office.employees.length }}</h4>
+<h3>Office Address:</h3>
+<h4>{{ office.address }} {{ office.suite }}</h4>
+<h4>{{ office.city }} {{ office.state }}, {{ office.zip }}</h4>
+
+
+<!-- if employees are in this office, do something -->
+@if (office.employees.length) 
+{
+    <table>
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Department</th>
+            </tr>
+        </thead>
+    </table>
+
+    <tbody>
+        <!--for loop to display our employee info based on what we get back-->
+        @for(employee of office.employees; track $index)
+        {   <!--assigning class to every other row generated (will make viewing easier for user)-->
+            <tr [ngClass]="{
+                'display1': $index %2 === 0,
+                'display2': $index %2 === 1
+            }"> <!--for each, add a click event to navigate to respective data point (so clicking on ee name will take you to that ee's info page, same w/ office)-->
+                <td>{{ employee.employeeId }}</td>
+                <td>{{ employee.lastName }}, {{ employee.firstName }}</td>  <!--probably place here with a hover and click event-->
+                <td>{{ employee.department.departmentName }}</td> <!--also one for department-->
+            </tr>
+        }
+    </tbody>
+} @else {
+    <p>No employees in this office. This office can be deleted.</p>
+}
+
+<h3>Update This Office </h3>
+
+<form class="submissionForm">
+    <label for="updateName">Office Name: </label>
+    <input 
+        type="text" 
+        id="updateName" 
+        name="updateName"
+        [(ngModel)]="updatedOffice.officeName"
+    >
+    <label for="updateAdress">Office Address: </label>
+    <input 
+        type="text" 
+        id="updateAddress" 
+        name="updateAddress"
+        [(ngModel)]="updatedOffice.address"
+    >
+    <label for="updateSuite">Office Suite: </label>
+    <input 
+        type="text" 
+        id="updateSuite" 
+        name="updateSuite"
+        [(ngModel)]="updatedOffice.suite"
+    >
+    <label for="updateCity">Office City: </label>
+    <input 
+        type="text" 
+        id="updateCity" 
+        name="updateCity"
+        [(ngModel)]="updatedOffice.city"
+    >
+    <label for="updateState">Office State: </label>
+    <input 
+        type="text" 
+        id="updateState" 
+        name="updateState"
+        [(ngModel)]="updatedOffice.state"
+    >
+    <label for="updateZip">Office Zip: </label>
+    <input 
+        type="number" 
+        id="updateZip" 
+        name="updateZip"
+        [(ngModel)]="updatedOffice.zip"
+    >
+    <label for="updateMaxCapacity">Office Max Employees: </label> 
+    <input 
+        type="number" 
+        id="updateMaxCapacity" 
+        name="updateMaxCapacity"
+        [(ngModel)]="updatedOffice.maxCapacity"
+    >
+
+    
+    <!--this can't press when max employees is changed to be less than current number of employees-->
+    <button 
+        (click)="updateOffice()"
+        [disabled]="updatedOffice.employees.length > updatedOffice.maxCapacity" 
+    >UPDATE</button> 
+
+       
+</form>

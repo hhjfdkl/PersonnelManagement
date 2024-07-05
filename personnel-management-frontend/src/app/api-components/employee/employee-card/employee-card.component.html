@@ -1,1 +1,18 @@
-<p>employee-card works!</p>
+<article>
+
+    <h3>{{ employee.lastName }}, {{ employee.firstName }}</h3>
+    <h4>Employee ID: {{ employee.employeeId }}</h4>
+    <h5>Department: {{ employee.department.departmentName }}</h5>
+    <h5>Office: {{ employee.office.officeName }}</h5>
+    
+
+    
+    
+    <button (click)="deleteThisEmployee()"
+    >
+    DELETE
+    </button> 
+    
+    <button (click)="viewEmployee()">VIEW</button> <!--this takes us to the dept info. -->
+
+</article>

@@ -1,1 +1,110 @@
-<p>employees works!</p>
+<div class="buttons">
+    <h2>CRUD buttons</h2>
+
+    <button (click)="getAllEmployees()">Get All</button>
+</div>
+
+<div class="buttons">
+
+    <h2>Get Employee by ID</h2>
+    <form #idForm>
+
+        <label for="formEmployeeId">Employee ID to Get: </label>
+        <input 
+            type="number"
+            id="formEmployeeId"
+            name="formEmployeeId"
+            [(ngModel)]="formEmployeeId" #formId
+            (click)="employeeNotThere = false"
+        >
+        <button (click)="getEmployeeById()">SUBMIT</button>
+        <button 
+            (click)="idForm.reset()"
+            (click)="employeeNotThere = false">RESET</button>
+    </form>
+
+    @if(employeeNotThere) {
+        <div style="color: red;">
+            Employee with ID {{ formEmployeeId }} doesn't exist!
+        </div>
+    }
+</div>
+
+<div class="buttons">
+    <h2>Create Employee</h2>
+    <form #createEmployeeForm>
+
+        <label for="postFormDepartment">First, select Employee Department: </label>
+        <input 
+            type="number"
+            id="postFormDepartment"
+            name="postFormDepartment"
+            [(ngModel)]="formDepartmentId"
+        >
+        <button (click)="getDepartmentById()">CHECK</button>
+        @if(departmentNotThere===false){
+            <p>selected department: {{ formDepartment.departmentName }}</p>
+        } @else {
+            <p>No department selected</p>
+        }
+        <label for="postFormOffice">Next, select Employee Office: </label>
+        <input 
+            type="number"
+            id="postFormOffice"
+            name="postFormOffice"
+            [(ngModel)]="formOfficeId"
+        >
+        <button (click)="getOfficeById()">CHECK</button>
+        @if(officeNotThere===false){
+            <p>selected office: {{ formOffice.officeName }}</p>
+        } @else {
+            <p>No office selected</p>
+        }
+
+        <label for="postFormFirstName">Employee First Name: </label>
+        <input 
+            type="text"
+            id="postFormFirstName"
+            name="postFormFirstName"
+            [(ngModel)]="formEmployee.firstName"
+        >
+        <label for="postFormLastName">Employee Last Name: </label>
+        <input 
+            type="text"
+            id="postFormLastName"
+            name="postFormLastName"
+            [(ngModel)]="formEmployee.lastName"
+        >
+
+        <button 
+            (click)="setFormEmployeeDepartment()"
+            (click)="setFormEmployeeOffice()"
+            (click)="addEmployee()"
+            [disabled]="departmentSelected === false || officeSelected === false ||
+            (formOffice.employees.length + 1) > formOffice.maxCapacity"
+            >SUBMIT</button>
+            @if(departmentSelected === false){
+            <div style="color:red">
+                No Department Selected!
+            </div>
+
+            } 
+            @if(officeSelected === false) {
+                <div style="color:red">
+                    No Office Selected!
+                </div>
+            }  @else {
+                @if((formOffice.employees.length + 1) > formOffice.maxCapacity) {  
+                    <div style="color:red">
+                        Office is at max capacity!
+                    </div>
+                }
+            }              
+
+        
+    </form>
+</div>
+
+@for(currentEmployee of employees; track $index) {
+    <app-employee-card [employee]="currentEmployee" (deleteEmployeeEvent)="processDeleteEvent($event)"></app-employee-card>
+}

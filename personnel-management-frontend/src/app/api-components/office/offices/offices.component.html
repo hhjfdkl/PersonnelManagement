@@ -1,1 +1,105 @@
-<p>offices works!</p>
+<div class="CRUD">
+<div class="buttons">
+    <h2>CRUD buttons</h2>
+
+    <button (click)="getAllOffices()">Get All</button>
+</div>
+
+<div class="buttons">
+
+    <h2>Get Office by ID</h2>
+    <form #idForm>
+
+        <label for="formOfficeId">Office ID to Get: </label>
+        <input 
+            type="number"
+            id="formOfficeId"
+            name="formOfficeId"
+            [(ngModel)]="formOfficeId" #formId
+            (click)="officeNotThere = false"
+        >
+        <button (click)="getOfficeById()">SUBMIT</button>
+        <button (click)="idForm.reset()" (click)="officeNotThere = false">RESET</button>
+    </form>
+
+    @if(officeNotThere) {
+        <div style="color: red;">
+            Office with ID {{ formOfficeId }} doesn't exist!
+        </div>
+    }
+</div>
+
+<div class="buttons">
+    <h2>Create Office</h2>
+    <form #createOfficeForm>
+       
+
+        <label for="postFormName">Office Name: </label>
+        <input 
+            type="text"
+            id="postFormName"
+            name="postFormName"
+            [(ngModel)]="formOffice.officeName"
+        >
+        <label for="postFormAddress">Office Address: </label>
+        <input 
+            type="text"
+            id="postFormAddress"
+            name="postFormAddress"
+            [(ngModel)]="formOffice.address"
+        >
+        <label for="postFormSuite">Office Suite: </label>
+        <input 
+            type="text"
+            id="postFormSuite"
+            name="postFormSuite"
+            [(ngModel)]="formOffice.suite"
+        >
+        <label for="postFormCity">Office City: </label>
+        <input 
+            type="text"
+            id="postFormCity"
+            name="postFormCity"
+            [(ngModel)]="formOffice.city"
+        >
+        <label for="postFormState">Office State: </label>
+        <input 
+            type="text"
+            id="postFormState"
+            name="postFormState"
+            [(ngModel)]="formOffice.state"
+        >
+        <label for="postFormZip">Office Zip: </label>
+        <input 
+            type="number"
+            id="postFormZip"
+            name="postFormZip"
+            [(ngModel)]="formOffice.zip"
+        >
+        <label for="postFormMaxCapacity">Office Max No. Employees: </label>
+        <input 
+            type="number"
+            id="postFormMaxCapacity"
+            name="postFormMaxCapacity"
+            [(ngModel)]="formOffice.maxCapacity"
+        >
+        
+
+
+        <button (click)="addOffice()" (click)="createOfficeForm.reset()"
+            [disabled]="officeNameExists(formOffice.officeName)">SUBMIT</button>
+            
+        
+
+        @if(officeNameExists(formOffice.officeName)) {  
+            <div style="color:red">
+                Office Name already exists!
+            </div>
+        }
+    </form>
+</div>
+</div>
+
+@for(currentOffice of offices; track $index) {
+    <app-office-card [office]="currentOffice" (deleteOfficeEvent)="processDeleteEvent($event)"></app-office-card>
+}

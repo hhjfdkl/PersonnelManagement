@@ -1,5 +1,3 @@
-<p>department-detail works!</p>
-
 <h2>DETAILS FOR DEPARTMENT</h2>
 
 <h3>Department ID {{ dept.departmentId }}: {{ dept.departmentName }}</h3>
@@ -47,7 +45,7 @@
         [(ngModel)]="updatedDepartment.departmentName"
     >
 
-    <!--this button shouldn't press if dept name already exists. need to pass that info to this component-->
+    
     <button 
         (click)="updateDepartment()"
     >UPDATE</button>

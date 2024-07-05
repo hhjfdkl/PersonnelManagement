@@ -1,1 +1,26 @@
-<p>office-card works!</p>
+<article>
+
+    <h3>{{ office.officeName }}</h3>
+    <h4>Office ID: {{ office.officeId }}</h4>
+    <h4>Office Address:</h4> 
+    <h5>{{ office.address }} {{ office.suite }}</h5>
+    <h5>{{ office.city }} {{ office.state }}, {{ office.zip }}</h5>
+    <h6>Employees: {{ office.employees.length }}, Max Capacity: {{ office.maxCapacity }}</h6>
+    <!-- <ul>
+        @for (employee of department.getLimitedEmployees(0,3); track $index)
+        {
+            <li>{{ employee.lastName }}, {{ employee.firstName }}</li>
+        }
+    </ul> -->
+
+    
+    
+    <button (click)="deleteThisOffice()"
+    [disabled]="office.employees.length > 0"
+    >
+    DELETE
+    </button> <!-- delete button only shows available when there are no employees in the department -->
+    
+    <button (click)="viewOffice()">VIEW</button> <!--this takes us to the dept info. -->
+
+</article>

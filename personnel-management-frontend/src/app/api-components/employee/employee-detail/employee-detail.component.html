@@ -1,1 +1,87 @@
-<p>employee-detail works!</p>
+
+<h2>DETAILS FOR EMPLOYEE</h2>
+
+<h3>Employee ID {{ ee.employeeId }}: {{ ee.lastName }}, {{ ee.firstName }}</h3>
+<h4>Employee Department: {{ ee.department.departmentName }}</h4>
+<h4>Employee Office: {{ ee.office.officeName }}</h4>
+
+
+
+
+<h3>Update This Employee</h3>
+
+<form>
+    <p>Employee Current Department: ID: {{ ee.department.departmentId}} {{ ee.department.departmentName }}</p>
+    <label for="updateEmployeeDepartment">Change Department?</label>
+    <input 
+        type="number" 
+        id="updateEmployeeDepartment" 
+        name="updateEmployeeDepartment"
+        [(ngModel)]="formDepartmentId"
+    >
+    <button (click)="getDepartmentById()">CHECK</button>
+        @if(departmentNotThere===false){
+            <p>selected department: {{ formDepartment.departmentName }}</p>
+        } @else {
+            <p>No department selected</p>
+        }
+    <p>Employee Current Office: ID: {{ ee.office.officeId }} {{ ee.office.officeName }}</p>
+    <label for="updateEmployeeOffice">Change Office?</label>
+    <input 
+        type="number" 
+        id="updateEmployeeOffice" 
+        name="updateEmployeeOffice"
+        [(ngModel)]="formOfficeId"
+    >
+    <button (click)="getOfficeById()">CHECK</button>
+        @if(officeNotThere===false){
+            <p>selected department: {{ formOffice.officeName }}</p>
+        } @else {
+            <p>No department selected</p>
+        }
+    
+    <label for="updateFirstName">Employee First Name: </label>
+    <input 
+        type="text" 
+        id="updateFirstName" 
+        name="updateFirstName"
+        [(ngModel)]="updatedEmployee.firstName"
+    >
+
+    <label for="updateFirstName">Employee Last Name: </label>
+    <input 
+        type="text" 
+        id="updateLastName" 
+        name="updateLastName"
+        [(ngModel)]="updatedEmployee.lastName"
+    >
+
+    
+    <button 
+        (click)="setFormEmployeeDepartment()"
+        (click)="setFormEmployeeOffice()"
+        (click)="updateEmployee()"
+        [disabled]="departmentSelected === false || officeSelected === false ||
+            (formOffice.employees.length + 1) > formOffice.maxCapacity"
+        
+    >UPDATE</button>
+    @if(departmentSelected === false){
+        <div style="color:red">
+            No Department Selected!
+        </div>
+
+        } 
+        @if(officeSelected === false) {
+            <div style="color:red">
+                No Office Selected!
+            </div>
+        }  @else {
+            @if((formOffice.employees.length + 1) > formOffice.maxCapacity) {  
+                <div style="color:red">
+                    Office is at max capacity!
+                </div>
+            }
+        }              
+
+       
+</form>
